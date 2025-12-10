@@ -1,0 +1,43 @@
+{
+    "appetizer": [
+        {
+            "name": "Lumpiang Shanghai",
+            "price": 100,
+            "description": "Heaping pyramid of spring rolls filled with ground, carrots, Chinese celery, and flavored with our secret spice blend. Comes with a sweet chili sauce.",
+            "notes": {
+                "vegetarian": false,
+                "spicy": true
+            }
+        },
+        {
+            "name": "Tokwa't Baboy",
+            "price": 80,
+            "description": "Tofu and pork deep fried together and served with a sweet and sour soy mix.",
+            "notes": {
+                "vegetarian": false,
+                "spicy": false
+            }
+        },
+        {
+            "name": "Pritong Kangkong",
+            "price": 120,
+            "description": "Water spinach leaves dried and fried in an airy pancake batter.",
+            "notes": {
+                "vegetarian": true,
+                "spicy": false
+            }
+        }
+    ],
+    "entree": [],
+    "dessert": [
+        {
+            "name": "Turon",
+            "price": 60,
+            "description": "Bananas and caramelized jackfruit wrapped in a thin sheet of wheat, served with a caramel glaze and sesame seeds.",
+            "notes": {
+                "vegetarian": true,
+                "spicy": false
+            }
+        }
+    ]
+}

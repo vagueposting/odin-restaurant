@@ -2,5 +2,8 @@
 Last updated 2025-12-09. */
 
 import './styles/landing.css';
+import { RestaurantData } from './data.js';
+import { Interface } from './display.js';
 
-console.log('page successfully loaded')
+const data = RestaurantData();
+const display = Interface(data)

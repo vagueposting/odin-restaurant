@@ -9,7 +9,6 @@ export function Interface(data) {
     const body = document.querySelector('body');
 
     const coreNavigation = () => {
-        // TODO: apply classes to all elements
         const navigation = {
             header: document.createElement('header'),
             navigator: document.createElement('nav'),
@@ -17,7 +16,8 @@ export function Interface(data) {
         };
 
         const navButtons = data.nav.pages;
-        
+
+        // Create buttons based on the general nav array
         navButtons.forEach(button => {
             const { navButtons, navigator } = navigation;
             navButtons[button] = document.createElement('button');
@@ -36,6 +36,7 @@ export function Interface(data) {
         body.appendChild(navigation.header);
     }
 
+    // TODO: Add "style" parameter that changes layout (grid, flex, etc).
     const pageTemplate = (page = 'home') => {
         const pageFeatures = {
             shell: document.createElement('div'),

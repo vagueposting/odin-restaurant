@@ -143,9 +143,8 @@ const pageElements = {
 
         /* my stanford bootcamp mentors will axe me to death 
         for not assigning variables to everything, but i care not.
-        if i don't put enough cognitive stress into 
-        my code, i will make stupid mistakes
-        so this is for the best */
+        if i don't put enough cognitive stress into my code, 
+        i will make stupid mistakes. so this is for the best */
 
         for (let i = 0; i < parts.length; i++) {
             // Get part name.

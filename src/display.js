@@ -105,6 +105,7 @@ const pageElements = {
                 const template = document.createElement('div')
                 // TODO: Add class/es
                 // Maybe I'll make it modular so a different class applies
+                return template;
             }},
             // Every component here is an assembly instruction
             // If you want to change the sorting order, change the

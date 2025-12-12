@@ -67,3 +67,13 @@ nav {
 
     font-family: 'Aclonica', sans-serif;
 }
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+.menu .core {
+    font-size: 80%;
+}

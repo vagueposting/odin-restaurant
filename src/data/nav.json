@@ -1,3 +1,22 @@
 { 
-    "pages": ["home", "menu", "about", "contact"]
+    "pages": [
+        {
+            "name": "home",
+            "text": ["Welcome to ",
+            "[EMP] The Tasty Restaurant",
+            "! Home of the most delectable Filipino cuisine in town."
+        ]
+        },
+        {
+            "name": "menu",
+            "text": ["placeholder"]
+        }, 
+        { 
+            "name": "about",
+            "text": ["placeholder"]
+        }, 
+        {
+            "name": "contact",
+            "text": ["placeholder"]
+    }]
 }

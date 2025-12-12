@@ -9,7 +9,7 @@ export const Interface = (data) => {
     const body = document.querySelector('body');
 
     const coreNavigation = () => {
-        const navigation = {
+        /* const navigation = {
             header: document.createElement('header'),
             logoSpace: {
                 root: document.createElement('div'),
@@ -17,52 +17,84 @@ export const Interface = (data) => {
             },
             navigator: document.createElement('nav'),
             navButtons: {}
-        };
+        }; */
 
-        navigation.logoSpace.logo.textContent = 'The Tasty Restaurant'
-        navigation.logoSpace.root.appendChild(navigation
-            .logoSpace
-            .logo)
-        navigation.header.appendChild(navigation.logoSpace.root);
+        const navigation = new Map([
+            ['header', () => {
+                const shell = document.createElement('header');
+                return shell;
+            }],
+            ['logoSpace', () => {
+                const root = document.createElement('div');
 
-        const navButtons = data.nav.pages;
+                const logo = document.createElement('h1'); // change to img later.
+                logo.textContent = 'The Tasty Restaurant'
 
-        // Create buttons based on the general nav array
-        navButtons.forEach(button => {
-            const { navButtons, navigator } = navigation;
-            navButtons[button] = document.createElement('button');
-            navButtons[button].classList.add('navButtons');
-            navButtons[button].id = `nav-${button}`;
+                root.appendChild(logo);
 
-            navButtons[button].textContent = TextControls.capitalizeEachWord(button);
+                return root;
+            }],
+            ['navigator', () => {
+                const shell = document.createElement('nav');
+                const navButtons = {};
+                // Create buttons based on the general nav array
+                const pageList = data.nav.pages.map(page => page.name);
+                pageList.forEach(button => {
+                    navButtons[button] = document.createElement('button');
+                    navButtons[button].classList.add('navButtons');
 
-            navigator.appendChild(navButtons[button]);
+                    navButtons[button].id = `nav-${button}`;
 
-        });
+                    navButtons[button].textContent = TextControls
+                        .capitalizeEachWord(button);
 
-        navigation.header
-            .appendChild(navigation.navigator)
+                    shell.appendChild(navButtons[button]);
+                });
 
-        body.appendChild(navigation.header);
+                return shell;
+            }]
+        ])
+
+        body.appendChild(assembleParts(navigation, 'header'));
     }
 
-    // TODO: Add "style" parameter that changes layout (grid, flex, etc).
-    const pageTemplate = (page = 'home') => {
-        const pageFeatures = {
-            shell: document.createElement('div'),
-            header: document.createElement('h1'),
-            bodyText: document.createElement('p')
-        };
+    // TODO: Add "format" parameter that changes layout (grid, flex, etc).
+    const pageTemplate = (page = 'home', format = 'DEFAULT') => {
+        // Core, non-negotiable features of each page
+        const pageFeatures = new Map([
+            ['shell', () => {
+                const shell = document.createElement('div');
+                shell.classList.add('bodyPage');
+                shell.id = page;
+                return shell;
+            }],
+            ['header', () => {
+                const shell = document.createElement('h1');
+                shell.textContent = TextControls.capitalizeEachWord(page);
+                return shell;
+            }],
+            ['bodyText', (text = `This is placeholder text for ${page}`) => {
+                const shell = document.createElement('p');
+                shell.textContent = text;
+                return shell;
+            }]
+        ])
 
-        pageFeatures.shell.classList.add('bodyPage');
-        pageFeatures.shell.id = page;
+        if (page === 'menu') {
+            pageFeatures.set('menu', () => {
+                const menuBoard = document.createElement('div');
+                menuBoard.classList.add(page); // menu
 
-        pageFeatures.header.textContent = TextControls.capitalizeEachWord(page);
-        pageFeatures.bodyText.textContent = `This is placeholder text for ${page}.`
+                data.menu.appetizer.forEach((dish) => {
+                    const dishCard = pageElements.menuitem(dish);
+                    menuBoard.appendChild(dishCard);
+                })
+                return menuBoard;
+            })
+        }
 
-        pageFeatures.shell.appendChild(pageFeatures.header);
-        pageFeatures.shell.appendChild(pageFeatures.bodyText);
-        body.appendChild(pageFeatures.shell);
+        body.appendChild(
+            assembleParts(pageFeatures, 'shell'));
     }
 
      const applyPageSwitches = (page) => {
@@ -73,10 +105,8 @@ export const Interface = (data) => {
             allPages.forEach((pg) => {
                 if (pg.id === page) {
                     pg.classList.add('visible');
-                    console.log(pg.classList);
                 } else {
                     pg.classList.remove('visible');
-                    console.log(pg.classList);
                 }});
         });
     };
@@ -85,8 +115,8 @@ export const Interface = (data) => {
     (() => {
         coreNavigation();
         data.nav.pages.forEach((page) => {
-            pageTemplate(page);
-            applyPageSwitches(page);
+            pageTemplate(page.name);
+            applyPageSwitches(page.name);
             document.getElementById('home').classList.add('visible');
         })
     })();
@@ -98,71 +128,63 @@ const pageElements = {
      * @param {Object} dish - dish data, e.g. data.menu.appetizer[i]  
      * @param {Array} styles - default is 'core' but can append with alternate styles 
      * @returns a completed dish card
+     * 
+     * Every component here is an assembly instruction
+     * If you want to change the sorting order, change the
+     * order at which parts are declared.
      */
     menuitem: (dish, styles = ['core']) => {
-        const parts = [
-            { card: () => {
-                const template = document.createElement('div')
-                // TODO: Add class/es
-                // Maybe I'll make it modular so a different class applies
-                return template;
-            }},
-            // Every component here is an assembly instruction
-            // If you want to change the sorting order, change the
-            // order at which parts are declared.
-            { dishName: () => { 
+        const parts = new Map([
+            ['card', () => {
+                const shell = document.createElement('div')
+                styles.forEach((style) => {
+                    shell.classList.add(style);
+                });
+                return shell;
+            }],
+            [ 'dishName', () => {
                 const shell = document.createElement('h2');
                 shell.textContent = dish.name;
                 // TODO: Add class/es
 
                 return shell;
-            }},
-            { dishPrice: () => {
+            }],
+            [ 'dishPrice', () => {
                 const shell = document.createElement('p');
-
+                
                 const header = document.createElement('span');
                 header.textContent = 'Price: ';
-                
+
                 const data = document.createElement('span');
-                data.textContent = String(data.price);
+                data.textContent = `Php ${dish.price}`;
 
                 shell.appendChild(header);
                 shell.appendChild(data);
-                // TODO: Add class/es
-
                 return shell;
-            }},
-            { dishDescription: () => {
+            }],
+            ['dishDescription', () => {
                 const shell = document.createElement('p');
-                shell.textContent = dish.description
-                // TODO: Add class/es
-
+                shell.textContent = dish.description;
                 return shell;
-            }}
-            // TODO: Add Notes Element
-        ]
+            }]
+        ])
 
-        /* my stanford bootcamp mentors will axe me to death 
-        for not assigning variables to everything, but i care not.
-        if i don't put enough cognitive stress into my code, 
-        i will make stupid mistakes. so this is for the best */
-
-        for (let i = 0; i < parts.length; i++) {
-            // Get part name.
-            const partName = Object.keys(parts[i])[0];
-
-            // Skip the card itself
-            if (partName === 'card') {
-                parts[0].card = parts[0].card();
-                continue;
-            }
-    
-            // Append each feature by running their 
-            // assembly instructions on the spot.
-            parts[0].card.appendChild(parts[i][partName]());
-        }
-
-        return parts.card;
-    }
+        return assembleParts(parts, 'card');
+    },
     // TODO: add assemblies for other elements!
+}
+
+
+const assembleParts = (parts, baseName) => {
+    const base = parts.get(baseName)();
+
+    for (const [part, assemble] of parts) {
+        if (part === baseName) {
+            continue;
+        }
+        
+        base.appendChild(assemble());
+    }
+
+    return base;
 }

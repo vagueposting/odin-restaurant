@@ -15,4 +15,4 @@ export const TextControls = {
 
         return capitalizedWords.join(' ');
     }
-};
+}

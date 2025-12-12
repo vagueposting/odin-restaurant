@@ -77,3 +77,11 @@ nav {
 .menu .core {
     font-size: 80%;
 }
+
+span.emp {
+    font-style: italic;
+}
+
+span.str {
+    font-style: bold;
+}

@@ -73,9 +73,13 @@ export const Interface = (data) => {
                 shell.textContent = TextControls.capitalizeEachWord(page);
                 return shell;
             }],
-            ['bodyText', (text = `This is placeholder text for ${page}`) => {
+            ['bodyText', () => {
                 const shell = document.createElement('p');
-                shell.textContent = text;
+                const rawText = data.nav.pages.find(
+                    pg => pg.name === page).body
+                const body = pageElements.formattedText(
+                    rawText);
+                shell.appendChild(body);
                 return shell;
             }]
         ])
@@ -171,6 +175,28 @@ const pageElements = {
 
         return assembleParts(parts, 'card');
     },
+    formattedText: (rawText) => {
+        const finalText = document.createDocumentFragment();
+
+        rawText.forEach((frag) => {
+            const textFragment = document.createElement('span');
+            textFragment.innerText = frag.text;
+            switch (frag.format) {
+                case 1:
+                    textFragment.classList.add('emp')
+                    break;
+                case 2:
+                    textFragment.classList.add('str')
+                    break;
+                default:
+                    break;
+            }
+
+            finalText.appendChild(textFragment);
+        })
+
+        return finalText;
+    }
     // TODO: add assemblies for other elements!
 }
 

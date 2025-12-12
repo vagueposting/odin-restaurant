@@ -2,21 +2,46 @@
     "pages": [
         {
             "name": "home",
-            "text": ["Welcome to ",
-            "[EMP] The Tasty Restaurant",
-            "! Home of the most delectable Filipino cuisine in town."
+            "body": [
+                {
+                    "format": 0,
+                    "text": "Welcome to "
+                },
+                {
+                    "format": 1,
+                    "text": "The Tasty Restaurant"
+                },
+                {
+                    "format": 0,
+                    "text": "! Home of the most delectable Filipino cuisine in town."
+                }
         ]
         },
         {
             "name": "menu",
-            "text": ["placeholder"]
+            "body": [
+                {
+                    "format": 0,
+                    "text": "placeholder"
+                }
+        ]
         }, 
         { 
             "name": "about",
-            "text": ["placeholder"]
+            "body": [
+                {
+                    "format": 0,
+                    "text": "placeholder"
+                }
+        ]
         }, 
         {
             "name": "contact",
-            "text": ["placeholder"]
+            "body": [
+                {
+                    "format": 0,
+                    "text": "placeholder"
+                }
+        ]
     }]
 }

@@ -1,4 +1,5 @@
 import { TextControls } from "./utils";
+import { Images } from "./images.js";
 
 /**
  * Creates all features displayed on the actual web page
@@ -8,18 +9,12 @@ export const Interface = (data) => {
     console.log('This is the interface.');
     const body = document.querySelector('body');
 
-    const coreNavigation = () => {
-        /* const navigation = {
-            header: document.createElement('header'),
-            logoSpace: {
-                root: document.createElement('div'),
-                logo: document.createElement('h1') // change to img later.
-            },
-            navigator: document.createElement('nav'),
-            navButtons: {}
-        }; */
+    const banner = () => {
+        console.log('Generating banner..')
+    }
 
-        const navigation = new Map([
+    const coreNavigation = () => {
+         const navigation = new Map([
             ['header', () => {
                 const shell = document.createElement('header');
                 return shell;
@@ -27,8 +22,9 @@ export const Interface = (data) => {
             ['logoSpace', () => {
                 const root = document.createElement('div');
 
-                const logo = document.createElement('h1'); // change to img later.
-                logo.textContent = 'The Tasty Restaurant'
+                const logo = document.createElement('img');
+                logo.classList.add('logo')
+                logo.src = Images.logo;
 
                 root.appendChild(logo);
 
@@ -60,6 +56,7 @@ export const Interface = (data) => {
 
     // TODO: Add "format" parameter that changes layout (grid, flex, etc).
     const pageTemplate = (page = 'home', format = 'DEFAULT') => {
+        console.log(`Creating page ${page} of type ${format}`)
         // Core, non-negotiable features of each page
         const pageFeatures = new Map([
             ['shell', () => {
@@ -77,10 +74,24 @@ export const Interface = (data) => {
                 const shell = document.createElement('p');
                 const rawText = data.nav.pages.find(
                     pg => pg.name === page).body
-                const body = pageElements.formattedText(
-                    rawText);
+                const body = pageElements
+                    .formattedText(rawText);
                 shell.appendChild(body);
                 return shell;
+            }],
+            ['hero', () => {
+                if (format === 'HERO') {
+                    const shell = document.createDocumentFragment();
+                    
+                    const img = document.createElement('img');
+                    img.classList.add('hero')
+                    img.src = Images.hero;
+                    shell.appendChild(img);
+
+                    return shell;
+                }
+
+                return null;
             }]
         ])
 
@@ -119,7 +130,7 @@ export const Interface = (data) => {
     (() => {
         coreNavigation();
         data.nav.pages.forEach((page) => {
-            pageTemplate(page.name);
+            pageTemplate(page.name, page.type);
             applyPageSwitches(page.name);
             document.getElementById('home').classList.add('visible');
         })
@@ -182,10 +193,10 @@ const pageElements = {
             const textFragment = document.createElement('span');
             textFragment.innerText = frag.text;
             switch (frag.format) {
-                case 1:
+                case 1: // Italics
                     textFragment.classList.add('emp')
                     break;
-                case 2:
+                case 2: // Bold
                     textFragment.classList.add('str')
                     break;
                 default:
@@ -209,8 +220,12 @@ const assembleParts = (parts, baseName) => {
             continue;
         }
         
-        base.appendChild(assemble());
-    }
+        const element = assemble();
+
+        if (element) {
+            base.appendChild(element);
+        };
+    };
 
     return base;
 }

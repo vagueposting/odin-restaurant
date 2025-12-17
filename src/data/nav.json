@@ -2,6 +2,7 @@
     "pages": [
         {
             "name": "home",
+            "type": "HERO",
             "body": [
                 {
                     "format": 0,
@@ -13,12 +14,21 @@
                 },
                 {
                     "format": 0,
-                    "text": "! Home of the most delectable Filipino cuisine in town."
+                    "text": "'s official home page! We are the home of the most delectable Filipino cuisine in town. This website contains everything, and I really mean "
+                },
+                {
+                    "format": 1,
+                    "text": "everything"
+                },
+                {
+                    "format": 0,
+                    "text": " about this wonderful establishment."
                 }
-        ]
+            ]
         },
         {
             "name": "menu",
+            "type": "DEFAULT",
             "body": [
                 {
                     "format": 0,
@@ -28,6 +38,7 @@
         }, 
         { 
             "name": "about",
+            "type": "DEFAULT",
             "body": [
                 {
                     "format": 0,
@@ -37,6 +48,7 @@
         }, 
         {
             "name": "contact",
+            "type": "DEFAULT",
             "body": [
                 {
                     "format": 0,

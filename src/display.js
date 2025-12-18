@@ -70,15 +70,6 @@ export const Interface = (data) => {
                 shell.textContent = TextControls.capitalizeEachWord(page);
                 return shell;
             }],
-            ['bodyText', () => {
-                const shell = document.createElement('p');
-                const rawText = data.nav.pages.find(
-                    pg => pg.name === page).body
-                const body = pageElements
-                    .formattedText(rawText);
-                shell.appendChild(body);
-                return shell;
-            }],
             ['hero', () => {
                 if (format === 'HERO') {
                     const shell = document.createDocumentFragment();
@@ -92,6 +83,15 @@ export const Interface = (data) => {
                 }
 
                 return null;
+            }],
+            ['bodyText', () => {
+                const shell = document.createElement('p');
+                const rawText = data.nav.pages.find(
+                    pg => pg.name === page).body
+                const body = pageElements
+                    .formattedText(rawText);
+                shell.appendChild(body);
+                return shell;
             }]
         ])
 
@@ -186,6 +186,7 @@ const pageElements = {
 
         return assembleParts(parts, 'card');
     },
+    // TODO: refactor this so that it spawns in paragraphs
     formattedText: (rawText) => {
         const finalText = document.createDocumentFragment();
 
@@ -198,6 +199,14 @@ const pageElements = {
                     break;
                 case 2: // Bold
                     textFragment.classList.add('str')
+                    break;
+                case 3: // Bold and italics
+                    textFragment.classList.add('str');
+                    textFragment.classList.add('emp');
+                    break;
+                case 4: // Line breaks
+                    const lineBreak = document.createElement('br');
+                    textFragment.appendChild(lineBreak);
                     break;
                 default:
                     break;

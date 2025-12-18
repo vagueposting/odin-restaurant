@@ -22,7 +22,19 @@
                 },
                 {
                     "format": 0,
-                    "text": " about this wonderful establishment."
+                    "text": " about this wonderful establishment. "
+                },
+                {
+                    "format": 4,
+                    "text": ""
+                },
+                {
+                    "format": 1,
+                    "text": "The Tasty Restaurant"
+                },
+                {
+                    "format": 0,
+                    "text": " was founded in 2004 by Chef Matteo Veterano."
                 }
             ]
         },

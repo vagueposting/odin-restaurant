@@ -6,35 +6,48 @@
             "body": [
                 {
                     "format": 0,
+                    "startParagraph": true,
                     "text": "Welcome to "
                 },
                 {
                     "format": 1,
+                    "startParagraph": false,
                     "text": "The Tasty Restaurant"
                 },
                 {
                     "format": 0,
-                    "text": "'s official home page! We are the home of the most delectable Filipino cuisine in town. This website contains everything, and I really mean "
+                    "startParagraph": false,
+                    "text": "'s official home page! We are the home of the most delectable Filipino cuisine in town. This restaurant is home to Chef Matteo Veterano's rendition of classic Filipino cuisine, from warm and comforting "
                 },
                 {
                     "format": 1,
+                    "startParagraph": false,
+                    "text": "adobo"
+                },
+                {
+                    "format": 0,
+                    "startParagraph": false,
+                    "text": " as your main course, to cool, indulgent "
+                },
+                {
+                    "format": 1,
+                    "startParagraph": false,
+                    "text": "halo-halo"
+                },
+                {
+                    "format": 0,
+                    "startParagraph": false,
+                    "text": " for dessert. We craft our dishes with passion and reverence for their culture of origin. This website contains everything, and I really mean "
+                },
+                {
+                    "format": 1,
+                    "startParagraph": false,
                     "text": "everything"
                 },
                 {
                     "format": 0,
-                    "text": " about this wonderful establishment. "
-                },
-                {
-                    "format": 4,
-                    "text": ""
-                },
-                {
-                    "format": 1,
-                    "text": "The Tasty Restaurant"
-                },
-                {
-                    "format": 0,
-                    "text": " was founded in 2004 by Chef Matteo Veterano."
+                    "startParagraph": false,
+                    "text": " about this wonderful establishment. See our menu, read testimonials, and reach out to us for reservations and any other questions you may have. We invite you to journey through the flavors of the Philippines, all from the heart of our community. Come, and savor the experience!"
                 }
             ]
         },

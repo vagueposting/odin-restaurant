@@ -82,6 +82,7 @@ img.logo {
     font-family: 'Benne', serif;
 
     background-color: aliceblue;
+    box-shadow: -0.25rem 0 0.5rem rgba(0, 0, 0, 0.20);
 }
 
 .bodyPage.visible {
@@ -104,7 +105,7 @@ img.logo {
 }
 
 img.hero {
-    height: 50%;
+    height: 40%;
     width: 100%;
 
     object-fit: cover;
@@ -130,5 +131,5 @@ span.emp {
 }
 
 span.str {
-    font-style: bold;
+    font-weight: bold;
 }

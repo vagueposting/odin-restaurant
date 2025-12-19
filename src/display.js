@@ -188,34 +188,29 @@ const pageElements = {
     },
     // TODO: refactor this so that it spawns in paragraphs
     formattedText: (rawText) => {
-        const finalText = document.createDocumentFragment();
+        const fragment = document.createDocumentFragment();
+        let currentParagraph = null;
+        const classMap = {
+            1: ['emp'],
+            2: ['str'],
+            3: ['emp', 'str']
+        };
 
         rawText.forEach((frag) => {
-            const textFragment = document.createElement('span');
-            textFragment.innerText = frag.text;
-            switch (frag.format) {
-                case 1: // Italics
-                    textFragment.classList.add('emp')
-                    break;
-                case 2: // Bold
-                    textFragment.classList.add('str')
-                    break;
-                case 3: // Bold and italics
-                    textFragment.classList.add('str');
-                    textFragment.classList.add('emp');
-                    break;
-                case 4: // Line breaks
-                    const lineBreak = document.createElement('br');
-                    textFragment.appendChild(lineBreak);
-                    break;
-                default:
-                    break;
+            if (frag.startParagraph || !currentParagraph) {
+                currentParagraph = document.createElement('p');
+                fragment.appendChild(currentParagraph);
             }
 
-            finalText.appendChild(textFragment);
-        })
+            const span = document.createElement('span');
+            const classes = classMap[frag.format] ?? [];
+            span.classList.add(...classes);
 
-        return finalText;
+
+            currentParagraph.appendChild(span);
+        });
+
+        return fragment;
     }
     // TODO: add assemblies for other elements!
 }

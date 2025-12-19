@@ -33,7 +33,7 @@
         {
             "name": "Turon",
             "price": 60,
-            "description": "Bananas and caramelized jackfruit wrapped in a thin sheet of wheat, served with a caramel glaze and sesame seeds.",
+            "description": "Bananas and caramelized jackfruit wrapped in a thin sheet of wheat, served with a caramel glaze and garnished with sesame seeds.",
             "notes": {
                 "vegetarian": true,
                 "spicy": false

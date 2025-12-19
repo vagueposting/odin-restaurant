@@ -88,23 +88,43 @@ export const Interface = (data) => {
                 const shell = document.createElement('p');
                 const rawText = data.nav.pages.find(
                     pg => pg.name === page).body
-                const body = pageElements
+                console.log(rawText);
+                console.log(`${page} body: ${rawText.length >= 1 && rawText[0].text != ''}`)
+                if (rawText.length >= 1 && rawText[0].text != '') {
+                    const body = pageElements
                     .formattedText(rawText);
-                shell.appendChild(body);
-                return shell;
+                    shell.appendChild(body);
+                    return shell;
+                };
+                return;
             }]
         ])
 
         if (page === 'menu') {
             pageFeatures.set('menu', () => {
-                const menuBoard = document.createElement('div');
-                menuBoard.classList.add(page); // menu
+                const menu = document.createElement('div');
 
-                data.menu.appetizer.forEach((dish) => {
-                    const dishCard = pageElements.menuitem(dish);
-                    menuBoard.appendChild(dishCard);
+                const categories = ['appetizer', 'entree', 'dessert'];
+
+                categories.forEach((course) => {
+                    const section = document.createElement('div');
+                    const items = document.createElement('div');
+                    items.classList.add('menu');
+
+                    const header = document.createElement('h2');
+                    header.textContent = TextControls.capitalizeEachWord(course);
+                    section.appendChild(header);
+
+                    data.menu[course].forEach((dish)  => {
+                        const dishCard = pageElements.menuItem(dish);
+                        items.appendChild(dishCard);
+                    })
+
+                    section.appendChild(items);
+                    menu.appendChild(section);
                 })
-                return menuBoard;
+
+                return menu;
             })
         }
 
@@ -148,7 +168,7 @@ const pageElements = {
      * If you want to change the sorting order, change the
      * order at which parts are declared.
      */
-    menuitem: (dish, styles = ['core']) => {
+    menuItem: (dish, styles = ['core']) => {
         const parts = new Map([
             ['card', () => {
                 const shell = document.createElement('div')
@@ -168,6 +188,7 @@ const pageElements = {
                 const shell = document.createElement('p');
                 
                 const header = document.createElement('span');
+                header.classList.add('dataHeader');
                 header.textContent = 'Price: ';
 
                 const data = document.createElement('span');
@@ -203,6 +224,7 @@ const pageElements = {
             }
 
             const span = document.createElement('span');
+            span.textContent = frag.text;
             const classes = classMap[frag.format] ?? [];
             span.classList.add(...classes);
 

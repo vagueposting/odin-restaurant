@@ -89,15 +89,23 @@ img.logo {
     display: flex;
 }
 
-.bodyPage h1 {
-    font-size: 8rem;
-    margin-top: 2rem;
-    line-height: 70%;
-
+.bodyPage h1, .bodyPage h2:not(.core h2) {
     text-indent: 0;
     text-align: center;
 
     font-family: 'Aclonica', sans-serif;
+}
+
+.bodyPage h1 {
+    font-size: 8rem;
+    margin-top: 2rem;
+    line-height: 70%;
+}
+
+.bodyPage h2:not(.core h2) {
+    font-size: 4rem;
+    margin: 2rem 0;
+    line-height: 70%;
 }
 
 .bodyPage p {
@@ -120,16 +128,27 @@ img.hero {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
+    padding: 0rem 1.5rem;  
 }
 
 .menu .core {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
     font-size: 80%;
+    border-left: 3px solid gray;
+    background-color: rgba(120, 120, 120, 0.05)
 }
 
 span.emp {
     font-style: italic;
 }
 
-span.str {
+span.str, .dataHeader {
     font-weight: bold;
+}
+
+.core p {
+    padding: 0rem 3rem;
 }

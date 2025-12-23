@@ -51,6 +51,54 @@
                 }
             ]
         },
+        { 
+            "name": "about",
+            "type": "DEFAULT",
+            "body": [
+                {
+                    "format": 1,
+                    "startParagraph": true,
+                    "text": "The Tasty Restaurant"
+                },
+                {
+                    "format": 0,
+                    "startParagraph": false,
+                    "text": " first opened its doors in 2004. Chef Matteo Veterano was truly a veteran of the kitchen, having worked for various Michelin Star awardee restaurants from around the globe. He opened this fine establishment as he wished to share his mother's recipes to diners and guests from all over."
+                },
+                {
+                    "format": 0,
+                    "startParagraph": true,
+                    "text": "Here in "
+                },
+                {
+                    "format": 1,
+                    "startParagraph": true,
+                    "text": "The Tasty Restaurant"
+                },
+                {
+                    "format": 0,
+                    "startParagraph": false,
+                    "text": ", we forgo any fancy and pretentious vibes. We believe that the spirit of Filipino food is in the passion that comes into crafting each meal."
+                }
+            ],
+            "testimonials": [
+                {
+                    "customer": "Justin Y.",
+                    "customerJob": "International Food Critic",
+                    "comment": "I wasn't sure what was in store for me going into this restaurant, but 'pleasantly surprised' is a MASSIVE understatement. Every single dish looks home-style but the quality is truly divine and out of this world!!"
+                },
+                {
+                    "customer": "Baby C.",
+                    "customerJob": "Blogger",
+                    "comment": "I've eaten here countless times but last week I was finally able to fly out my dad from Texas and eat here for his birthday. To Chef Matteo, BRAVO. [...] My dad was instantly reminded of his lola's cooking from when he was a kid."
+                },
+                {
+                    "customer": "Sesiya B.",
+                    "customerJob": "Professor of Anthropology",
+                    "comment": "yeah this restaurant sure is tasty"
+                }
+            ]
+        },
         {
             "name": "menu",
             "type": "DEFAULT",
@@ -58,16 +106,6 @@
                 {
                     "format": 0,
                     "text": ""
-                }
-        ]
-        }, 
-        { 
-            "name": "about",
-            "type": "DEFAULT",
-            "body": [
-                {
-                    "format": 0,
-                    "text": "placeholder"
                 }
         ]
         }, 

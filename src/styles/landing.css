@@ -152,3 +152,9 @@ span.str, .dataHeader {
 .core p {
     padding: 0rem 3rem;
 }
+
+.testimonialCollection {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 1rem;
+}

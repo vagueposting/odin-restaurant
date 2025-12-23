@@ -54,7 +54,6 @@ export const Interface = (data) => {
         body.appendChild(assembleParts(navigation, 'header'));
     }
 
-    // TODO: Add "format" parameter that changes layout (grid, flex, etc).
     const pageTemplate = (page = 'home', format = 'DEFAULT') => {
         console.log(`Creating page ${page} of type ${format}`)
         // Core, non-negotiable features of each page
@@ -88,8 +87,7 @@ export const Interface = (data) => {
                 const shell = document.createElement('p');
                 const rawText = data.nav.pages.find(
                     pg => pg.name === page).body
-                console.log(rawText);
-                console.log(`${page} body: ${rawText.length >= 1 && rawText[0].text != ''}`)
+
                 if (rawText.length >= 1 && rawText[0].text != '') {
                     const body = pageElements
                     .formattedText(rawText);
@@ -112,7 +110,8 @@ export const Interface = (data) => {
                     items.classList.add('menu');
 
                     const header = document.createElement('h2');
-                    header.textContent = TextControls.capitalizeEachWord(course);
+                    header.textContent = course === 'entree' ? 'Entrée' : TextControls
+                        .capitalizeEachWord(course);
                     section.appendChild(header);
 
                     data.menu[course].forEach((dish)  => {
@@ -126,6 +125,68 @@ export const Interface = (data) => {
 
                 return menu;
             })
+        }
+
+        if (page === 'about') {
+            pageFeatures.set('testimonials', () => {
+                const shell = document.createElement('div');
+
+                const header = document.createElement('h2');
+                header.textContent = 'What diners say about us';
+                shell.appendChild(header); 
+
+                const { testimonials } = data.nav.pages.find(pg => pg.name === 'about');
+                const testimonialCollection = document.createElement('div');
+                testimonialCollection.classList.add('testimonialCollection');
+                
+                testimonials.forEach(item => {
+                    const testimonialBox = document.createElement('div');
+                    testimonialBox.classList.add('testimonialBox');
+
+                    const guestInfoWrapper = document.createElement('div');
+                    guestInfoWrapper.classList.add('guestData');
+
+                    const testimonialContents = new Map([
+                        ['comment', () => {
+                            const guestComment = document.createElement('p');
+                            guestComment.classList.add('guestComment');
+                            guestComment.textContent = item.comment;
+                            return guestComment; 
+                        }],
+                        ['guest', () => {
+                            const guestName = document.createElement('span');
+                            guestName.classList.add('guestName');
+                            guestName.textContent = item.customer;
+                            return guestName; 
+                        }],
+                        ['guestJob', () => {
+                            const guestJob = document.createElement('span');
+                            guestJob.classList.add('guestJob');
+                            guestJob.textContent = item.customerJob; 
+                            return guestJob; 
+                        }]
+                    ]);
+
+                    testimonialContents.forEach((renderFunction, key) => {
+                        const element = renderFunction();
+                        if (!element) return;
+
+                        if (key === 'comment') {
+                            testimonialBox.appendChild(element);
+                        } else {
+                            guestInfoWrapper.appendChild(element);
+                        }
+                    });
+
+                    // 3. Append the populated wrapper to the main box
+                    testimonialBox.appendChild(guestInfoWrapper);
+                    testimonialCollection.appendChild(testimonialBox);
+                });
+
+                shell.appendChild(testimonialCollection);
+                return shell;
+            })
+    
         }
 
         body.appendChild(

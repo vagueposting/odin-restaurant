@@ -145,7 +145,7 @@ span.emp {
     font-style: italic;
 }
 
-span.str, .dataHeader {
+span.str, .dataHeader, .guestName {
     font-weight: bold;
 }
 
@@ -156,5 +156,28 @@ span.str, .dataHeader {
 .testimonialCollection {
     display: grid;
     grid-template-columns: repeat(3, auto);
-    gap: 1rem;
+    gap: 0.5rem;
+
+    padding: 0 3rem;
+}
+
+.testimonialBox {
+    font-size: 80%;
+    padding: 1rem;
+}
+
+.guestComment {
+    font-style: italic;
+}
+
+.guestData {
+    display: flex;
+    flex-direction: column;
+    gap: 0.10rem;
+
+    text-align: right;
+}
+
+.guestName::before {
+    content: "— ";
 }

@@ -1,5 +1,5 @@
 # Odin Restaurant
-![https://i.imgur.com/CHWHDX7.png]
+![Screenshot of the website.](https://i.imgur.com/CHWHDX7.png)
 
 **Languages used:** JavaScript, CSS, JSON
 

@@ -141,6 +141,25 @@ img.hero {
     background-color: rgba(120, 120, 120, 0.05)
 }
 
+.dishNotes {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 0.25rem;
+
+    width: 90%;
+
+    padding-bottom: 1rem;
+}
+
+.dishNotes span {
+    width: 3rem;
+}
+
+.dishNotes span svg {
+    height: 100%;
+}
+
 span.emp {
     font-style: italic;
 }
@@ -156,7 +175,7 @@ span.str, .dataHeader, .guestName {
 .testimonialCollection {
     display: grid;
     grid-template-columns: repeat(3, auto);
-    grid-auto-rows: auto;
+    grid-auto-rows: 1fr;
     gap: 0.5rem;
 
     padding: 0 3rem;

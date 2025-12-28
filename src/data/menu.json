@@ -26,14 +26,69 @@
                 "vegetarian": true,
                 "spicy": false
             }
+        },
+        {
+            "name": "Calamares",
+            "price": 150,
+            "description": "Squid rings coated in batter and deep fried. Served with a sweet and spicy chili pepper vinaigrette.",
+            "notes": {
+                "vegetarian": false,
+                "spicy": true
+            }
+        },
+        {
+            "name": "Kamote Fries",
+            "price": 80,
+            "description": "Filipino sweet potato cut into wedges and glazed with caramel.",
+            "notes": {
+                "vegetarian": true,
+                "spicy": false
+            }
         }
     ],
-    "entree": [],
+    "entree": [
+        {
+            "name": "Adobong Baboy",
+            "price": 250,
+            "description": "For sharing. Succulent pork shoulder chopped and marinated in our in-house 'red adobo' mix. Flavorful and just the right amount of oiliness.",
+            "notes": {
+                "vegetarian": false,
+                "spicy": false
+            }
+        },
+        {
+            "name": "Adobong Manok",
+            "price": 220,
+            "description": "For sharing. A whole chicken chopped, marinaded in our in-house 'red adobo' mix and grilled to perfection.",
+            "notes": {
+                "vegetarian": false,
+                "spicy": false
+            }
+        },
+        {
+            "name": "Adobong Talong",
+            "price": 180,
+            "description": "Because we didn't want our vegetarian diners to miss out on our red adobo mix. Flame-roasted marinaded eggplant served with sliced mushrooms.",
+            "notes": {
+                "vegetarian": true,
+                "spicy": false
+            }
+        }
+    ],
     "dessert": [
         {
             "name": "Turon",
             "price": 60,
             "description": "Bananas and caramelized jackfruit wrapped in a thin sheet of wheat, served with a caramel glaze and garnished with sesame seeds.",
+            "notes": {
+                "vegetarian": true,
+                "spicy": false
+            }
+        },
+        {
+            "name": "Halo-halo",
+            "price": 60,
+            "description": "A wonderful combination of various traditional Filipino sweets including ube, leche flan, and candied beans served on a bed of ice",
             "notes": {
                 "vegetarian": true,
                 "spicy": false

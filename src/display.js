@@ -341,7 +341,43 @@ const pageElements = {
                 const shell = document.createElement('p');
                 shell.textContent = dish.description;
                 return shell;
-            }]
+            }],
+            ['notes', () => {
+                const shell = document.createElement('div');
+                shell.classList.add('dishNotes')
+                const icons = {
+                    vegetarian: () => {
+                        const icon = document.createElement('span');
+                        let src;
+
+                        // This is really lazy, but I'll probably make a
+                        // "more secure" version when I'm not running out of time
+                        if (dish.notes.vegetarian) {
+                            src = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>food-apple</title><path d="M20,10C22,13 17,22 15,22C13,22 13,21 12,21C11,21 11,22 9,22C7,22 2,13 4,10C6,7 9,7 11,8V5C5.38,8.07 4.11,3.78 4.11,3.78C4.11,3.78 6.77,0.19 11,5V3H13V8C15,7 18,7 20,10Z" /></svg>`
+                        }
+
+                        icon.innerHTML = src;
+                        return icon;
+                    },
+                    spicy: () => {
+                        const icon = document.createElement('span');
+                        let src;
+
+                        if (dish.notes.spicy) {
+                            src = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>chili-mild</title><path d="M16 10V22C16 22 8 20 8 11V10C8 9.27 8.4 8.63 9 8.28L10.25 9L12 8L13.75 9L15 8.28C15.6 8.63 16 9.27 16 10M12 6.5L13.75 7.5L15.27 6.63C14.72 5.66 13.91 4.94 12.97 4.65C12.79 3.16 11.54 2 10 2V4C10.44 4 10.8 4.29 10.94 4.69C10.03 5 9.26 5.7 8.73 6.63L10.25 7.5L12 6.5Z" /></svg>`
+                        } else {
+                            src = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>chili-mild-outline</title><path d="M10.25 7.5L8.73 6.63C9.26 5.7 10.03 5 10.94 4.69C10.8 4.29 10.44 4 10 4V2C11.54 2 12.79 3.16 12.97 4.65C13.91 4.94 14.72 5.66 15.27 6.63L13.75 7.5L12 6.5L10.25 7.5M16 10V22C16 22 8 20 8 11V10C8 9.27 8.4 8.63 9 8.28L10.25 9L12 8L13.75 9L15 8.28C15.6 8.63 16 9.27 16 10M14 11.45L12 10.3L10 11.43C10.17 15.44 12.23 17.69 14 18.87V11.45Z" /></svg>`
+                        }
+
+                        icon.innerHTML = src;
+                        return icon;
+                    }
+                }
+                if (dish.notes.vegetarian) shell.appendChild(icons.vegetarian());
+                if (dish.notes.spicy) shell.appendChild(icons.spicy());
+                return shell;
+            }
+            ]
         ])
 
         return assembleParts(parts, 'card');

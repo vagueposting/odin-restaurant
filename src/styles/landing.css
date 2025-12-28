@@ -156,6 +156,7 @@ span.str, .dataHeader, .guestName {
 .testimonialCollection {
     display: grid;
     grid-template-columns: repeat(3, auto);
+    grid-auto-rows: auto;
     gap: 0.5rem;
 
     padding: 0 3rem;
@@ -180,4 +181,81 @@ span.str, .dataHeader, .guestName {
 
 .guestName::before {
     content: "— ";
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: 2rem;
+
+    width: 60%;
+}
+
+.formFragment {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.formFragment.center {
+    justify-content: center;
+}
+
+.contactForm label {
+    margin: 0;
+    font-weight: bold;
+}
+
+.contactForm input[type="email"],
+.contactForm input[type="text"],
+.contactForm textarea {
+    font-size: 1.75rem;
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+    outline: none;
+    border: 1px solid darkslategray;
+    border-radius: 0.50rem;
+
+    padding: 0.5rem;  
+}
+
+.contactForm input[type="email"],
+.contactForm input[type="text"] {
+    height: 3rem;
+}
+
+.contactForm input[type="checkbox"] {
+    width: 2rem;
+    height: 2rem;
+
+    position: relative;
+    top: 0.5rem;
+    left: 2rem;
+}
+
+.contactForm textarea {
+    resize: vertical;
+    width: 100%;
+    min-height: 10rem;
+    max-height: 30rem;
+}
+
+label[for="tos"] {
+    font-weight: normal;
+}
+
+button[type="submit"] {
+    height: 4rem;
+    padding: 0 2rem;
+
+    font-size: 3rem;
+
+    outline: none;
+    border: none;
+
+    background-color: black;
+    color: white;
+
+    font-family: 'Aclonica', 'Arial', sans-serif;
+    font-variant: small-caps;
 }

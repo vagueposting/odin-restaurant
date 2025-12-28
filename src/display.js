@@ -9,10 +9,6 @@ export const Interface = (data) => {
     console.log('This is the interface.');
     const body = document.querySelector('body');
 
-    const banner = () => {
-        console.log('Generating banner..')
-    }
-
     const coreNavigation = () => {
          const navigation = new Map([
             ['header', () => {
@@ -186,7 +182,89 @@ export const Interface = (data) => {
                 shell.appendChild(testimonialCollection);
                 return shell;
             })
-    
+        }
+
+        if (page === 'contact') {
+            pageFeatures.set('contactForm', () => {
+                const shell = document.createDocumentFragment();
+
+                const contactForm = document.createElement('form');
+                contactForm.classList.add('contactForm')
+                const formElements = ['name', 'email', 'message', 'tos', 'submit'];
+                let input, label;
+
+                /**
+                 * Helper function which quickly sets attributes for
+                 * input elements on the DOM.
+                 * @param {Node} e - element to be targeted
+                 * @param {string} type - desired input type
+                 * @param {number} maxLength - max length
+                 */
+                const setInputAttributes = (e, type, maxLength = 30) => {
+                    e.setAttribute('type', type);
+                    e.setAttribute('maxlength', maxLength);
+                    if (type === 'text' || type === 'email') {
+                        e.setAttribute('size', maxLength + 2)
+                    };
+                }
+
+            formElements.forEach(e => {
+                const formFragment = document.createElement('div');
+                formFragment.id = `section-${e}`;
+                formFragment.classList.add('formFragment');
+
+                input = null;
+                label = null;
+
+                if (e !== 'submit') {
+                    label = document.createElement('label');
+                    const agreementTOS = data.nav.pages.find(pg => pg.name === 'contact')['TOS'];
+                    label.textContent = e !== 'tos' ? `${TextControls.capitalizeEachWord(e)}: ` : agreementTOS;
+                    label.setAttribute('for', e);
+                }
+
+                switch (e) {
+                    case 'message':
+                        input = document.createElement('textarea');
+                        break;
+                    case 'submit':
+                        formFragment.classList.add('center')
+                        input = document.createElement('button');
+                        input.textContent = 'Submit';
+                        setInputAttributes(input, 'submit');
+                        break;
+                    case 'tos':
+                        input = document.createElement('input');
+                        setInputAttributes(input, 'checkbox');
+                        break;
+                    case 'name':
+                        input = document.createElement('input');
+                        setInputAttributes(input, 'text');
+                        break;
+                    case 'email':
+                        input = document.createElement('input');
+                        setInputAttributes(input, 'email');
+                        break;
+                    default:
+                        input = document.createElement('input');
+                        break;
+                }
+
+                input.id = e; 
+                input.setAttribute('name', e);
+
+                // 4. Append to fragment
+                if (e !== 'tos' && label) formFragment.appendChild(label);
+                formFragment.appendChild(input);
+                if (e === 'tos' && label) formFragment.appendChild(label);
+                
+                contactForm.appendChild(formFragment);
+            });
+
+                shell.appendChild(contactForm);
+
+                return shell;
+            })
         }
 
         body.appendChild(

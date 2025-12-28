@@ -115,8 +115,10 @@
             "body": [
                 {
                     "format": 0,
-                    "text": "placeholder"
+                    "text": "Write us a message and we'll try to write back!"
                 }
-        ]
-    }]
+            ],
+            "TOS": "I consent to receiving a response from The Tasty Restaurant."
+        }   
+    ]
 }
